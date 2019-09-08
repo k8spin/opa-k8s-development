@@ -1,0 +1,7 @@
+os: linux
+language: minimal
+
+script: 
+  - curl -L -o opa https://github.com/open-policy-agent/opa/releases/download/v0.13.5/opa_linux_amd64
+  - chmod 755 opa
+  - ./opa test -v .

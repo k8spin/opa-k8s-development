@@ -4,6 +4,8 @@
 
 This project makes easy to develop `deny` rules and `patches` mutations. In this repository, you will find a `main.rego` file which is in charge of generating the expected Kubernetes API `json` response in the validation and mutation stage along with a set of basic `deny` rules and it's tests + mocks.
 
+[![Build Status](https://travis-ci.org/k8spin/opa-k8s-development.svg?branch=master)](https://travis-ci.org/k8spin/opa-k8s-development)
+
 ## TL;DR
 
 ```bash
