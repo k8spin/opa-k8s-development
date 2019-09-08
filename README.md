@@ -2,7 +2,7 @@
 
 ![OPA Logo](./assets/opa.png)
 
-This project makes easy to develop `deny` rules and `patches` mutations. In this repository you will find a `main.rego` file wich is in charge of generate the expected Kubernetes API `json` response in the Validation and mutation stage a long with a set of basic `deny` rules and it's tests + mocks.
+This project makes easy to develop `deny` rules and `patches` mutations. In this repository, you will find a `main.rego` file which is in charge of generating the expected Kubernetes API `json` response in the validation and mutation stage along with a set of basic `deny` rules and it's tests + mocks.
 
 ## TL;DR
 
@@ -21,7 +21,7 @@ PASS: 5/5
 
 ## OPA Webhooks
 
-OPA and Kubernetes has to be configured registering a validation and mutation webhook into Kubernetes API. This topic is out of the scope of this project but you can read more about it in the [official OPA documentation](https://www.openpolicyagent.org/docs/latest/kubernetes-admission-control).
+OPA and Kubernetes has to be configured registering a validation and mutation webhook into the Kubernetes API. This topic is out of the scope of this project but you can read more about it in the [official OPA documentation](https://www.openpolicyagent.org/docs/latest/kubernetes-admission-control).
 
 But, you have to keep in your mind the following diagram:
 
@@ -31,15 +31,15 @@ The important thing here is to know that the mutation phase is triggered before 
 
 ## Project structure
 
-This repository contains three different tpyes of rego files to make it easy to extend this environment:
+This repository contains three different types of rego files to make it easy to extend this environment:
 
-- `[KIND].rego`: This files contains the `deny` or `pathes` rules to validate or mutate a request.
-- `[KIND]-test.rego`: This ones contains a set of test related to the testing kind specified in it's name.
-- `[KIND]-mocks.rego`: This files contains a series of Kubernetes requests to use as mocked requests in tests.
+- `[KIND].rego`: This file contains the `deny` or `patches` rules to validate or mutate a request.
+- `[KIND]-test.rego`: This one contains a set of tests related to the testing kind specified in its name.
+- `[KIND]-mocks.rego`: This file contains a series of Kubernetes requests to use as mocked requests in the tests.
 
 There are also a couple of special rego files:
 
-- `main.rego` and `main-test.rego`: Contains the structures to build the kubernetes api responses used to validate and mutate the incoming requests.
+- `main.rego` and `main-test.rego`: It contains the structures to build the kubernetes api responses used to validate and mutate the incoming requests.
 
 ### main.rego
 
@@ -80,10 +80,10 @@ response = {
 Let's review this **important** file. The `main` structure contains the common part of a validate and mutate response. In the `main` structure it's present a `response` attribute. This attribute will get three different values depending of the rules (deny and patches) applied to the incoming requests:
 
 - If no deny and no patches applied to the incoming request, it will use the `default response`.
-- If not deny rules applied, `reason == ""`, the response will be `"patchType": "JSONPatch",` with the patches applyed to the request *(Can be empty)*.
+- If not deny rules applied, `reason == ""`, the response will be `"patchType": "JSONPatch",` with the patches applied to the request *(can be empty)*.
 - If some deny rules returned a reason, `reason != ""`, the response will be `"allowed": false, "status": {"reason": reason},`. The client will get the reason message in the response.
 
-It's really important to know that the same input has to generate only one output. OPA Allows a function to return two different outputs, but kubernetes only accepts one. This is the reason why both (non default) response structure are exclusive using the `reason empty comparation`.
+It's really important to know that the same input has to generate only one output. OPA allows a function to return two different outputs, but kubernetes only accepts one. This is the reason why both *(no default)* response structures is exclusive using the *reason empty comparison*.
 
 
 ## Using it
@@ -91,7 +91,7 @@ It's really important to know that the same input has to generate only one outpu
 To use this testing environment you will need to clone this repository and download the latest [OPA](https://www.openpolicyagent.org/) release *(actual version: [v0.13.5](https://github.com/open-policy-agent/opa/releases/tag/v0.13.5))*. It's not needed to have a kubernetes cluster. Remember, this project is useful in the [OPA](https://www.openpolicyagent.org/) rules/mutations development stage.
 
 
-The following commands has been executed in a [`centos:7` container image](https://hub.docker.com/_/centos?tab=tags) to make it repeatable and cleaner:
+The following commands have been executed in a [`centos:7` container image](https://hub.docker.com/_/centos?tab=tags) to make it repeatable and cleaner:
 ```bash
 $ docker run -it --rm centos:7 /bin/bash
 [root@d8997b63a370 /]# yum install -y wget git # Output hidden
