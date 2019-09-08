@@ -113,3 +113,13 @@ data.kubernetes.admission.test_valid_client_pod_priorityclass: PASS (609.106µs)
 --------------------------------------------------------------------------------
 PASS: 5/5
 ```
+
+## Disclaimer
+
+This project was released by the [K8Spin](https://k8spin.cloud) team to show you how we develop new `deny` and `patch` kubernetes rules. 
+This is the main structure with a set of basic rules *(demo rules)*. [K8Spin](https://k8spin.cloud) has it owns rules *(no released, security matters)*. 
+So, you are free to pick up this project and start developing new rules without having to deploy untested rules to a kubernetes cluster.
+
+If you find out a better way to develop OPA rules, let us know :). Dont forget to [join our slack group](https://slack.k8spin.cloud). 
+
+Thanks!
