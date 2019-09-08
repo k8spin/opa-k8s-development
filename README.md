@@ -125,3 +125,7 @@ So, you are free to pick up this project and start developing new rules without 
 If you find out a better way to develop OPA rules, let us know :). Don't forget to [join our slack group](https://slack.k8spin.cloud).
 
 Thanks!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
